@@ -1,10 +1,12 @@
 package com.sga.backend.model;
 
+import com.sga.backend.model.enums.Prioridade;
+import com.sga.backend.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -14,14 +16,22 @@ public class Tarefa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String titulo;
-    String descricao;
-    Date prazo;
-    String prioridade;
-    String status;
+    @Column(nullable = false)
+    private String titulo;
+
+    private String descricao;
+
+    private LocalDate prazo;
+
+    @Enumerated(EnumType.STRING)
+    private Prioridade prioridade;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @ManyToOne
-    Disciplina disciplina;
+    @JoinColumn(name = "disciplina_id", nullable = false)
+    private Disciplina disciplina;
 }
