@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+**.idea
 *.iws
 *.iml
 *.ipr
@@ -32,9 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-**/application.properties
 **/application-test.properties
 **/application-prod.properties
 **/application-dev.properties
-
-**/SecurityConfig.java
