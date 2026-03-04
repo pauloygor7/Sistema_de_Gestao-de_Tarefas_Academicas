@@ -1,5 +1,6 @@
 package com.sga.backend.service;
 
+import com.sga.backend.dto.DisciplinaResponseDTO;
 import com.sga.backend.model.Disciplina;
 import com.sga.backend.repository.DisciplinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,15 @@ public class DisciplinaService {
     DisciplinaRepository disciplinaRepository;
 
     @Transactional(readOnly = true)
-    public List<Disciplina> listarDisciplinas() {
-        List<Disciplina> lista = disciplinaRepository.findAll();
-        return lista;
+    public List<DisciplinaResponseDTO> listarDisciplinas() {
+        return disciplinaRepository.findAll()
+        .stream()
+                .map(disciplina -> new DisciplinaResponseDTO(
+                        disciplina.getId(),
+                        disciplina.getNome(),
+                        disciplina.getDescricao(),
+                        disciplina.getUsuario().getId()
+                ))
+                .toList();
     }
 }

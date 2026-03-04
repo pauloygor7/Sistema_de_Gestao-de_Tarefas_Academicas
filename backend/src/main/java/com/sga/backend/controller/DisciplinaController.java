@@ -1,7 +1,6 @@
 package com.sga.backend.controller;
 
-import com.sga.backend.model.Disciplina;
-import com.sga.backend.repository.DisciplinaRepository;
+import com.sga.backend.dto.DisciplinaResponseDTO;
 import com.sga.backend.service.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +17,8 @@ public class DisciplinaController {
     DisciplinaService disciplinaService;
 
     @GetMapping
-    public List<Disciplina> listar() {
-        List<Disciplina> lista = disciplinaService.listarDisciplinas();
+    public List<DisciplinaResponseDTO> listar() {
+        List<DisciplinaResponseDTO> lista = disciplinaService.listarDisciplinas();
         return lista;
     }
 }
